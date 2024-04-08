@@ -18,10 +18,10 @@ public class formulario extends javax.swing.JFrame {
     private RegistroLechugas registro; // instancia de RegistroLechugas
 
     public formulario() {
+
         initComponents();
         registro = new RegistroLechugas(); // Inicializa la instancia de RegistroLechuga
         setResizable(false);
-
     }
 
     /**
@@ -57,6 +57,7 @@ public class formulario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Control de siembras de lechugas");
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -124,27 +125,25 @@ public class formulario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtHumedad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(btnRegistrar)
-                        .addGap(71, 71, 71))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(71, 71, 71))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(65, 65, 65)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -210,11 +209,11 @@ public class formulario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
         );
 
         pack();
@@ -226,7 +225,7 @@ public class formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtHumedadActionPerformed
 
     private void txtLongitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLongitudActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtLongitudActionPerformed
 
     private void verRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistroActionPerformed
@@ -243,15 +242,18 @@ public class formulario extends javax.swing.JFrame {
                 // Abre el archivo con el programa predeterminado del sistema
                 Desktop.getDesktop().open(file);
             } else {
-                System.out.println("El archivo no existe: " + filePath);
+
+                JOptionPane.showMessageDialog(this, "El archivo no existe: " + filePath);
             }
         } catch (Exception ex) {
+
             // Manejar cualquier excepción que pueda ocurrir al intentar abrir el archivo
             ex.printStackTrace();
         }
     }//GEN-LAST:event_verRegistroActionPerformed
 
     private void eliminarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarRegistrosActionPerformed
+
         // Especifica la ruta del archivo a eliminar
         String filePath = "registro_lechugas.txt"; // Ajusta el nombre del archivo según sea necesario
 
@@ -261,26 +263,32 @@ public class formulario extends javax.swing.JFrame {
 
             // Verifica si el archivo existe antes de intentar eliminarlo
             if (file.exists()) {
+
                 // Elimina el archivo
                 if (file.delete()) {
-                    System.out.println("El archivo se eliminó correctamente.");
+
+                    JOptionPane.showMessageDialog(this, "El archivo se ha eliminado correctamente: " + filePath);
                 } else {
-                    System.out.println("No se pudo eliminar el archivo.");
+
+                    JOptionPane.showMessageDialog(this, "El archivo no se pudo eliminar: " + filePath);
                 }
             } else {
+
                 System.out.println("El archivo no existe: " + filePath);
             }
         } catch (Exception ex) {
+
             // Manejar cualquier excepción que pueda ocurrir al intentar eliminar el archivo
             ex.printStackTrace();
         }
     }//GEN-LAST:event_eliminarRegistrosActionPerformed
 
     private void txtDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDayActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtDayActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+
         if (txtTemperature.getText().isEmpty()
                 || txtHumedad.getText().isEmpty()
                 || txtLongitud.getText().isEmpty()
@@ -289,15 +297,17 @@ public class formulario extends javax.swing.JFrame {
             // Mostrar un JOptionPane indicando que se deben completar todos los campos
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
         } else {
+
             // Si todos los campos están completos, proceder con el registro
             // datos ingresados por el usuario
             int id = jComboBox1.getSelectedIndex() + 1; // Obtener el índice seleccionado y sumar 1 para obtener el ID
             String fechaPlantacion = txtDay.getText();
             double temperatura = Double.parseDouble(txtTemperature.getText());
             double humedad = Double.parseDouble(txtHumedad.getText());
+            String longitud = txtLongitud.getText();
 
             // Crear una instancia de Lechuga con los datos ingresados
-            Lechuga lechuga = new Lechuga(id, fechaPlantacion, temperatura, humedad);
+            Lechuga lechuga = new Lechuga(id, fechaPlantacion, temperatura, humedad, longitud);
 
             // Agregar la lechuga al registro
             registro.agregarLechuga(lechuga);
@@ -313,6 +323,7 @@ public class formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
     }
     private void vaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaciarCamposActionPerformed
+        
         txtDay.setText("");
         txtTemperature.setText("");
         txtHumedad.setText("");
@@ -323,27 +334,34 @@ public class formulario extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                
                 if ("Nimbus".equals(info.getName())) {
+                    
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
+            
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
+            
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
+            
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
                 new formulario().setVisible(true);
             }
