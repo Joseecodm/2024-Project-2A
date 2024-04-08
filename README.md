@@ -1,4 +1,4 @@
-# ProyectoIntegrador
+# Proyecto Integrador 2 semestre
 - En este repositorio esta el codigo fuente del programa del control de registro de lechugas del proyecto integrador
 
 ## Alumnos: 
