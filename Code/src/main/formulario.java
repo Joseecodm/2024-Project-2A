@@ -288,7 +288,7 @@ public class formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDayActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
+                
         if (txtTemperature.getText().isEmpty()
                 || txtHumedad.getText().isEmpty()
                 || txtLongitud.getText().isEmpty()

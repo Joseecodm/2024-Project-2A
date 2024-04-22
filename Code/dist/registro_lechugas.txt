@@ -1,2 +1,1 @@
-ID: 1, Fecha de Plantación: 9, Temperatura: 9.0 °C, Humedad: 9.0%, Longitud: 9 cm
-ID: 1, Fecha de Plantación: 8, Temperatura: 3.0 °C, Humedad: 4.0%, Longitud: 6 cm
+ID: 1, Fecha de Plantación: 15, Temperatura: 12.0 °C, Humedad: 12.0%, Longitud: 12 cm
