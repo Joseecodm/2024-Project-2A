@@ -1,8 +1,7 @@
-# Proyecto Integrador
+# **Proyecto Integrador de Segundo Semestre**
+## **Aplicacion de la "Electrocultura"**
 
-- En este repoitorio esta nuestro proyecto integrador
-
-## Alumnos: 
+### **Integrantes del equipo:**
 
 - Jose Manuel Cortes Ceron
 - Carmen Anahi Cornejo Lopez
