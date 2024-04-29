@@ -1,8 +1,8 @@
 # **Proyecto Integrador de Segundo Semestre**
-## **Aplicacion de la "Electrocultura"**
+## **Aplicación de la "Electrocultura"**
 
-### **Integrantes del equipo:**
+### **Integrantes del equipo: **
 
-- Jose Manuel Cortes Ceron
-- Carmen Anahi Cornejo Lopez
-- Gustavo Barrera Martinez
+- José Manuel Cortes Cerón
+- Carmen Anahí Cornejo López
+- Gustavo Barrera Martínez
