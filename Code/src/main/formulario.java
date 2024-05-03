@@ -15,12 +15,12 @@ public class formulario extends javax.swing.JFrame {
     /**
      * Creates new form formulario
      */
-    private RegistroLechugas registro; // instancia de RegistroLechugas
+    private RegistroLechugas registro;
 
     public formulario() {
 
         initComponents();
-        registro = new RegistroLechugas(); // Inicializa la instancia de RegistroLechuga
+        registro = new RegistroLechugas();
         setResizable(false);
     }
 
@@ -51,6 +51,7 @@ public class formulario extends javax.swing.JFrame {
         menuOption = new javax.swing.JMenu();
         verRegistro = new javax.swing.JMenuItem();
         vaciarCampos = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         eliminarRegistros = new javax.swing.JMenuItem();
 
         jButton1.setText("jButton1");
@@ -107,7 +108,7 @@ public class formulario extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("¡Hola, bienvenido!");
+        jLabel5.setText("Control de siembra");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,6 +193,14 @@ public class formulario extends javax.swing.JFrame {
         });
         menuOption.add(vaciarCampos);
 
+        jMenuItem1.setText("Encriptador y desencriptador");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuOption.add(jMenuItem1);
+
         eliminarRegistros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         eliminarRegistros.setText("Eliminar todos los registros");
         eliminarRegistros.addActionListener(new java.awt.event.ActionListener() {
@@ -230,16 +239,14 @@ public class formulario extends javax.swing.JFrame {
 
     private void verRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistroActionPerformed
 
-        // Especifica la ruta del archivo a abrir
-        String filePath = "registro_lechugas.txt"; // Ajusta el nombre del archivo según sea necesario
+        String filePath = "registro_lechugas.txt"; 
 
         try {
-            // Crea un objeto File con la ruta del archivo
+            
             File file = new File(filePath);
 
-            // Verifica si el archivo existe antes de intentar abrirlo
             if (file.exists()) {
-                // Abre el archivo con el programa predeterminado del sistema
+                
                 Desktop.getDesktop().open(file);
             } else {
 
@@ -247,24 +254,18 @@ public class formulario extends javax.swing.JFrame {
             }
         } catch (Exception ex) {
 
-            // Manejar cualquier excepción que pueda ocurrir al intentar abrir el archivo
             ex.printStackTrace();
         }
     }//GEN-LAST:event_verRegistroActionPerformed
 
     private void eliminarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarRegistrosActionPerformed
 
-        // Especifica la ruta del archivo a eliminar
-        String filePath = "registro_lechugas.txt"; // Ajusta el nombre del archivo según sea necesario
+        String filePath = "registro_lechugas.txt"; 
 
         try {
-            // Crea un objeto File con la ruta del archivo
             File file = new File(filePath);
 
-            // Verifica si el archivo existe antes de intentar eliminarlo
             if (file.exists()) {
-
-                // Elimina el archivo
                 if (file.delete()) {
 
                     JOptionPane.showMessageDialog(this, "El archivo se ha eliminado correctamente: " + filePath);
@@ -278,7 +279,6 @@ public class formulario extends javax.swing.JFrame {
             }
         } catch (Exception ex) {
 
-            // Manejar cualquier excepción que pueda ocurrir al intentar eliminar el archivo
             ex.printStackTrace();
         }
     }//GEN-LAST:event_eliminarRegistrosActionPerformed
@@ -294,28 +294,21 @@ public class formulario extends javax.swing.JFrame {
                 || txtLongitud.getText().isEmpty()
                 || txtDay.getText().isEmpty()) {
 
-            // Mostrar un JOptionPane indicando que se deben completar todos los campos
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
         } else {
 
-            // Si todos los campos están completos, proceder con el registro
-            // datos ingresados por el usuario
-            int id = jComboBox1.getSelectedIndex() + 1; // Obtener el índice seleccionado y sumar 1 para obtener el ID
+            int id = jComboBox1.getSelectedIndex() + 1;
             String fechaPlantacion = txtDay.getText();
             double temperatura = Double.parseDouble(txtTemperature.getText());
             double humedad = Double.parseDouble(txtHumedad.getText());
             String longitud = txtLongitud.getText();
 
-            // Crear una instancia de Lechuga con los datos ingresados
             Lechuga lechuga = new Lechuga(id, fechaPlantacion, temperatura, humedad, longitud);
 
-            // Agregar la lechuga al registro
             registro.agregarLechuga(lechuga);
 
-            // Guardar el registro en un archivo
             registro.guardarRegistro();
 
-            // Vaciar campos despues de guardar  
             txtDay.setText("");
             txtTemperature.setText("");
             txtHumedad.setText("");
@@ -329,6 +322,10 @@ public class formulario extends javax.swing.JFrame {
         txtHumedad.setText("");
         txtLongitud.setText("");
     }//GEN-LAST:event_vaciarCamposActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,9 +354,6 @@ public class formulario extends javax.swing.JFrame {
             
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             public void run() {
@@ -380,6 +374,7 @@ public class formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuOption;
     private javax.swing.JTextField txtDay;
