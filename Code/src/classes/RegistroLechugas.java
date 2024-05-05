@@ -9,16 +9,16 @@ import java.util.ArrayList;
  *
  * @author Josee
  */
-public class RegistroLechugas {
+public class registroLechugas {
 
-    private ArrayList<Lechuga> lechugas;
+    private ArrayList<lechuga> lechugas;
 
-    public RegistroLechugas() {
+    public registroLechugas() {
 
         lechugas = new ArrayList<>();
     }
 
-    public void agregarLechuga(Lechuga lechuga) {
+    public void agregarLechuga(lechuga lechuga) {
 
         lechugas.add(lechuga);
     }
@@ -27,7 +27,7 @@ public class RegistroLechugas {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter("registro_lechugas.txt"))) {
 
-            for (Lechuga lechuga : lechugas) {
+            for (lechuga lechuga : lechugas) {
 
                 writer.println(lechuga.getInfo());
             }

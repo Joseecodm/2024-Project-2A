@@ -1,7 +1,11 @@
 package main;
 
-import classes.Lechuga;
-import classes.RegistroLechugas;
+import classes.lechuga;
+import classes.registroLechugas;
+import classes.lechugaEncriptada;
+import classes.registroLechugasEncriptadas;
+import classes.autenticacion;
+
 import java.awt.Desktop;
 import java.io.File;
 import javax.swing.JOptionPane;
@@ -15,12 +19,12 @@ public class formulario extends javax.swing.JFrame {
     /**
      * Creates new form formulario
      */
-    private RegistroLechugas registro;
+    private registroLechugas registro;
 
     public formulario() {
 
         initComponents();
-        registro = new RegistroLechugas();
+        registro = new registroLechugas();
         setResizable(false);
     }
 
@@ -34,11 +38,12 @@ public class formulario extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         txtDay = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboxID = new javax.swing.JComboBox<>();
         txtTemperature = new javax.swing.JTextField();
         txtHumedad = new javax.swing.JTextField();
         txtLongitud = new javax.swing.JTextField();
@@ -46,15 +51,31 @@ public class formulario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        labelTEDCNM = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuOption = new javax.swing.JMenu();
         verRegistro = new javax.swing.JMenuItem();
+        vAEncripted = new javax.swing.JMenuItem();
         vaciarCampos = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         eliminarRegistros = new javax.swing.JMenuItem();
 
         jButton1.setText("jButton1");
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 51));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Control de siembras de lechugas");
@@ -75,7 +96,7 @@ public class formulario extends javax.swing.JFrame {
 
         jLabel7.setText("Id. de la lechuga");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lechuga normal", "Lechuga con antena" }));
+        cboxID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lechuga normal", "Lechuga con antena" }));
 
         txtTemperature.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -106,70 +127,118 @@ public class formulario extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Control de siembra");
+        labelTEDCNM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelTEDCNM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTEDCNM.setText("Instituto Tecnologico Superior del Occidente del Estado de Hidalgo");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Ing. Tecnologías de la Información y Comunicaciones");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Control de siembra de lechugas");
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 51));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtHumedad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                        .addComponent(btnRegistrar)
-                        .addGap(71, 71, 71))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtHumedad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRegistrar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboxID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 188, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(labelTEDCNM, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGap(49, 49, 49)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(cboxID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtTemperature, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtHumedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(btnRegistrar)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTemperature, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(txtLongitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtHumedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(btnRegistrar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLongitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(72, 72, 72))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(labelTEDCNM)
+                    .addContainerGap(323, Short.MAX_VALUE)))
         );
 
         menuOption.setText("Opciones");
@@ -184,6 +253,15 @@ public class formulario extends javax.swing.JFrame {
         });
         menuOption.add(verRegistro);
 
+        vAEncripted.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        vAEncripted.setText("Ver archivo encriptado");
+        vAEncripted.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vAEncriptedActionPerformed(evt);
+            }
+        });
+        menuOption.add(vAEncripted);
+
         vaciarCampos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         vaciarCampos.setText("Vaciar campos");
         vaciarCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -192,14 +270,6 @@ public class formulario extends javax.swing.JFrame {
             }
         });
         menuOption.add(vaciarCampos);
-
-        jMenuItem1.setText("Encriptador y desencriptador");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        menuOption.add(jMenuItem1);
 
         eliminarRegistros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         eliminarRegistros.setText("Eliminar todos los registros");
@@ -218,11 +288,13 @@ public class formulario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -239,14 +311,14 @@ public class formulario extends javax.swing.JFrame {
 
     private void verRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistroActionPerformed
 
-        String filePath = "registro_lechugas.txt"; 
+        String filePath = "registro_lechugas.txt";
 
         try {
-            
+
             File file = new File(filePath);
 
             if (file.exists()) {
-                
+
                 Desktop.getDesktop().open(file);
             } else {
 
@@ -260,25 +332,33 @@ public class formulario extends javax.swing.JFrame {
 
     private void eliminarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarRegistrosActionPerformed
 
-        String filePath = "registro_lechugas.txt"; 
+        String filePath1 = "registro_lechugas.txt";
+        String filePath2 = "registro_lechugas_encriptado.txt";
 
         try {
-            File file = new File(filePath);
 
-            if (file.exists()) {
-                if (file.delete()) {
-
-                    JOptionPane.showMessageDialog(this, "El archivo se ha eliminado correctamente: " + filePath);
+            File file1 = new File(filePath1);
+            if (file1.exists()) {
+                if (file1.delete()) {
+                    JOptionPane.showMessageDialog(this, "El archivo se ha eliminado correctamente: " + filePath1);
                 } else {
-
-                    JOptionPane.showMessageDialog(this, "El archivo no se pudo eliminar: " + filePath);
+                    JOptionPane.showMessageDialog(this, "El archivo no se pudo eliminar: " + filePath1);
                 }
             } else {
+                System.out.println("El archivo no existe: " + filePath1);
+            }
 
-                System.out.println("El archivo no existe: " + filePath);
+            File file2 = new File(filePath2);
+            if (file2.exists()) {
+                if (file2.delete()) {
+                    JOptionPane.showMessageDialog(this, "El archivo se ha eliminado correctamente: " + filePath2);
+                } else {
+                    JOptionPane.showMessageDialog(this, "El archivo no se pudo eliminar: " + filePath2);
+                }
+            } else {
+                System.out.println("El archivo no existe: " + filePath2);
             }
         } catch (Exception ex) {
-
             ex.printStackTrace();
         }
     }//GEN-LAST:event_eliminarRegistrosActionPerformed
@@ -288,27 +368,34 @@ public class formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDayActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-                
         if (txtTemperature.getText().isEmpty()
                 || txtHumedad.getText().isEmpty()
                 || txtLongitud.getText().isEmpty()
                 || txtDay.getText().isEmpty()) {
-
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
         } else {
-
-            int id = jComboBox1.getSelectedIndex() + 1;
+            int id = cboxID.getSelectedIndex() + 1;
             String fechaPlantacion = txtDay.getText();
             double temperatura = Double.parseDouble(txtTemperature.getText());
             double humedad = Double.parseDouble(txtHumedad.getText());
             String longitud = txtLongitud.getText();
 
-            Lechuga lechuga = new Lechuga(id, fechaPlantacion, temperatura, humedad, longitud);
+            // Crear lechuga
+            lechuga lechuga = new lechuga(id, fechaPlantacion, temperatura, humedad, longitud);
 
+            // Agregar lechuga al registro
             registro.agregarLechuga(lechuga);
 
+            // Guardar registro sin encriptar
             registro.guardarRegistro();
 
+            // Guardar registro encriptado
+            registroLechugasEncriptadas registroEncriptado = new registroLechugasEncriptadas();
+            lechugaEncriptada lechugaEncriptada = new lechugaEncriptada(id, fechaPlantacion, temperatura, humedad, longitud);
+            registroEncriptado.agregarLechuga(lechugaEncriptada);
+            registroEncriptado.guardarRegistroEncriptado();
+
+            // Limpiar campos de texto
             txtDay.setText("");
             txtTemperature.setText("");
             txtHumedad.setText("");
@@ -316,16 +403,37 @@ public class formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
     }
     private void vaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaciarCamposActionPerformed
-        
+
         txtDay.setText("");
         txtTemperature.setText("");
         txtHumedad.setText("");
         txtLongitud.setText("");
     }//GEN-LAST:event_vaciarCamposActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void vAEncriptedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vAEncriptedActionPerformed
+          // Verificar credenciales de usuario antes de abrir el archivo encriptado
+    String usuario = JOptionPane.showInputDialog(this, "Ingrese su nombre de usuario:");
+    String contrasena = JOptionPane.showInputDialog(this, "Ingrese su contraseña:");
+
+    // Verificar las credenciales
+    if (autenticacion.autenticar(usuario, contrasena)) {
+        // Las credenciales son correctas, abrir el archivo encriptado
+        String filePath = "registro_lechugas_encriptado.txt";
+        try {
+            File file = new File(filePath);
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            } else {
+                JOptionPane.showMessageDialog(this, "El archivo no existe: " + filePath);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    } else {
+        // Las credenciales son incorrectas, mostrar un mensaje de error
+        JOptionPane.showMessageDialog(this, "Credenciales incorrectas. No se puede acceder al archivo encriptado.");
+    }
+    }//GEN-LAST:event_vAEncriptedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,28 +442,28 @@ public class formulario extends javax.swing.JFrame {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                
+
                 if ("Nimbus".equals(info.getName())) {
-                    
+
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            
+
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            
+
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            
+
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            
+
             java.util.logging.Logger.getLogger(formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new formulario().setVisible(true);
             }
@@ -364,23 +472,27 @@ public class formulario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JComboBox<String> cboxID;
     private javax.swing.JMenuItem eliminarRegistros;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel labelTEDCNM;
     private javax.swing.JMenu menuOption;
     private javax.swing.JTextField txtDay;
     private javax.swing.JTextField txtHumedad;
     private javax.swing.JTextField txtLongitud;
     private javax.swing.JTextField txtTemperature;
+    private javax.swing.JMenuItem vAEncripted;
     private javax.swing.JMenuItem vaciarCampos;
     private javax.swing.JMenuItem verRegistro;
     // End of variables declaration//GEN-END:variables
