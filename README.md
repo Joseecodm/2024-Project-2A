@@ -1,5 +1,5 @@
 # **Proyecto Integrador de Segundo Semestre**
-## **Aplicación de la "Electrocultura"**
+## **Aplicación de la "Electro cultura"**
 
 ### **Integrantes del equipo:**
 
