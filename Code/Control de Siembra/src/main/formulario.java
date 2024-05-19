@@ -55,6 +55,8 @@ public class formulario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        txtAmperaje = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuOption = new javax.swing.JMenu();
         verRegistro = new javax.swing.JMenuItem();
@@ -153,6 +155,15 @@ public class formulario extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        txtAmperaje.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtAmperaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAmperajeActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Introduce el amperaje:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,24 +172,29 @@ public class formulario extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel6)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtHumedad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAmperaje, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnRegistrar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addComponent(jLabel7)
@@ -230,7 +246,11 @@ public class formulario extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtLongitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(72, 72, 72))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAmperaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(44, 44, 44))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -310,23 +330,27 @@ public class formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLongitudActionPerformed
 
     private void verRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistroActionPerformed
+        // Verificar credenciales de usuario antes de abrir el archivo encriptado
+        String usuario = JOptionPane.showInputDialog(this, "Ingrese su nombre de usuario:");
+        String contrasena = JOptionPane.showInputDialog(this, "Ingrese su contraseña:");
 
-        String filePath = "registro_lechugas.txt";
-
-        try {
-
-            File file = new File(filePath);
-
-            if (file.exists()) {
-
-                Desktop.getDesktop().open(file);
-            } else {
-
-                JOptionPane.showMessageDialog(this, "El archivo no existe: " + filePath);
+        // Verificar las credenciales
+        if (autenticacion.autenticar(usuario, contrasena)) {
+            // Las credenciales son correctas, abrir el archivo encriptado
+            String filePath = "registro_lechugas.txt";
+            try {
+                File file = new File(filePath);
+                if (file.exists()) {
+                    Desktop.getDesktop().open(file);
+                } else {
+                    JOptionPane.showMessageDialog(this, "El archivo no existe: " + filePath);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-
-            ex.printStackTrace();
+        } else {
+            // Las credenciales son incorrectas, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas. No se puede acceder al archivo encriptado.");
         }
     }//GEN-LAST:event_verRegistroActionPerformed
 
@@ -371,17 +395,21 @@ public class formulario extends javax.swing.JFrame {
         if (txtTemperature.getText().isEmpty()
                 || txtHumedad.getText().isEmpty()
                 || txtLongitud.getText().isEmpty()
-                || txtDay.getText().isEmpty()) {
+                || txtDay.getText().isEmpty()
+                || txtAmperaje.getText().isEmpty()) {
+
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+
         } else {
             int id = cboxID.getSelectedIndex() + 1;
             String fechaPlantacion = txtDay.getText();
             double temperatura = Double.parseDouble(txtTemperature.getText());
             double humedad = Double.parseDouble(txtHumedad.getText());
             String longitud = txtLongitud.getText();
-
+            double amperaje = Double.parseDouble(txtAmperaje.getText());
+            
             // Crear lechuga
-            lechuga lechuga = new lechuga(id, fechaPlantacion, temperatura, humedad, longitud);
+            lechuga lechuga = new lechuga(id, fechaPlantacion, temperatura, humedad, longitud, amperaje);
 
             // Agregar lechuga al registro
             registro.agregarLechuga(lechuga);
@@ -391,7 +419,7 @@ public class formulario extends javax.swing.JFrame {
 
             // Guardar registro encriptado
             registroLechugasEncriptadas registroEncriptado = new registroLechugasEncriptadas();
-            lechugaEncriptada lechugaEncriptada = new lechugaEncriptada(id, fechaPlantacion, temperatura, humedad, longitud);
+            lechugaEncriptada lechugaEncriptada = new lechugaEncriptada(id, fechaPlantacion, temperatura, humedad, longitud, amperaje);
             registroEncriptado.agregarLechuga(lechugaEncriptada);
             registroEncriptado.guardarRegistroEncriptado();
 
@@ -400,6 +428,7 @@ public class formulario extends javax.swing.JFrame {
             txtTemperature.setText("");
             txtHumedad.setText("");
             txtLongitud.setText("");
+            txtAmperaje.setText("");
     }//GEN-LAST:event_btnRegistrarActionPerformed
     }
     private void vaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaciarCamposActionPerformed
@@ -408,32 +437,37 @@ public class formulario extends javax.swing.JFrame {
         txtTemperature.setText("");
         txtHumedad.setText("");
         txtLongitud.setText("");
+        txtAmperaje.setText("");
     }//GEN-LAST:event_vaciarCamposActionPerformed
 
     private void vAEncriptedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vAEncriptedActionPerformed
-          // Verificar credenciales de usuario antes de abrir el archivo encriptado
-    String usuario = JOptionPane.showInputDialog(this, "Ingrese su nombre de usuario:");
-    String contrasena = JOptionPane.showInputDialog(this, "Ingrese su contraseña:");
+        // Verificar credenciales de usuario antes de abrir el archivo encriptado
+        String usuario = JOptionPane.showInputDialog(this, "Ingrese su nombre de usuario:");
+        String contrasena = JOptionPane.showInputDialog(this, "Ingrese su contraseña:");
 
-    // Verificar las credenciales
-    if (autenticacion.autenticar(usuario, contrasena)) {
-        // Las credenciales son correctas, abrir el archivo encriptado
-        String filePath = "registro_lechugas_encriptado.txt";
-        try {
-            File file = new File(filePath);
-            if (file.exists()) {
-                Desktop.getDesktop().open(file);
-            } else {
-                JOptionPane.showMessageDialog(this, "El archivo no existe: " + filePath);
+        // Verificar las credenciales
+        if (autenticacion.autenticar(usuario, contrasena)) {
+            // Las credenciales son correctas, abrir el archivo encriptado
+            String filePath = "registro_lechugas_encriptado.txt";
+            try {
+                File file = new File(filePath);
+                if (file.exists()) {
+                    Desktop.getDesktop().open(file);
+                } else {
+                    JOptionPane.showMessageDialog(this, "El archivo no existe: " + filePath);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } else {
+            // Las credenciales son incorrectas, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas. No se puede acceder al archivo encriptado.");
         }
-    } else {
-        // Las credenciales son incorrectas, mostrar un mensaje de error
-        JOptionPane.showMessageDialog(this, "Credenciales incorrectas. No se puede acceder al archivo encriptado.");
-    }
     }//GEN-LAST:event_vAEncriptedActionPerformed
+
+    private void txtAmperajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmperajeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAmperajeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -479,6 +513,7 @@ public class formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -488,6 +523,7 @@ public class formulario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel labelTEDCNM;
     private javax.swing.JMenu menuOption;
+    private javax.swing.JTextField txtAmperaje;
     private javax.swing.JTextField txtDay;
     private javax.swing.JTextField txtHumedad;
     private javax.swing.JTextField txtLongitud;
