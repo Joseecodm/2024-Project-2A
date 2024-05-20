@@ -41,7 +41,7 @@ public class lechuga {
      * temperatura, humedad, longitud y amperaje).
      */
     public String getInfo() {
-        return "ID: " + id + ", Fecha de Plantación: " + fechaPlantacion + ", Temperatura: " + temperatura + " °C, Humedad: " + humedad + "%, Longitud: " + longitud + " cm" + ", El amperaje es de : " + amperaje + " A";
+        return "ID: " + id + ", Dia: " + fechaPlantacion + ", Temperatura: " + temperatura + " °C, Humedad: " + humedad + "%, Longitud: " + longitud + " cm" + ", Amperaje : " + amperaje + " A";
     }
 
     /**

@@ -47,7 +47,7 @@ public class lechugaEncriptada {
     private String generarTextoInfo() {
         // Aquí se realizaría la encriptación de la información
         // (Este es un ejemplo simplificado, la encriptación real sería más compleja)
-        return "ID: " + id + ", Fecha de Plantación: " + fechaPlantacion + ", Temperatura: " + temperatura + " °C, Humedad: " + humedad + "%, Longitud: " + longitud + " cm" + ", El amperaje es de : " + amperaje + " A";
+        return "ID: " + id + ", Dia: " + fechaPlantacion + ", Temperatura: " + temperatura + " °C, Humedad: " + humedad + "%, Longitud: " + longitud + " cm" + ", Amperaje : " + amperaje + " A";
     }
 
     /**
